@@ -1,9 +1,10 @@
 #cloud-config
+%{ if length(extra_ssh_keys) > 0 }
 ssh_authorized_keys:
-- ${automation_key}
 %{ for ssh_key in extra_ssh_keys }
 - ${ssh_key}
 %{ endfor }
+%{ endif }
 runcmd:
 - apt-get update
 - apt-get install -y iptables git telnet vim software-properties-common resolvconf linux-headers-$(uname -r) jq curl open-iscsi
