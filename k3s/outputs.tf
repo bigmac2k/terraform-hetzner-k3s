@@ -7,3 +7,18 @@ output "ipv6" {
 output "kubeconfig" {
   value = data.external.get_kubeconfig.result.kubeconfig
 }
+output "kubeconfig_base64" {
+  value = data.external.get_kubeconfig.result.kubeconfig_base64
+}
+output "host" {
+  value = data.external.get_kubeconfig.result.host
+}
+output "cert" {
+  value = data.external.get_kubeconfig.result.cert
+}
+output "key" {
+  value = data.external.get_kubeconfig.result.key
+}
+output "ca" {
+  value = data.external.get_kubeconfig.result.ca
+}

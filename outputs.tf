@@ -4,6 +4,6 @@ output "master_ipv4" {
 output "master_ipv6" {
   value = module.masterpool.ipv6
 }
-output "kubeconfig" {
-  value = module.masterpool.kubeconfig
+output "kubeconfig_base64" {
+  value = module.masterpool.kubeconfig_base64
 }
