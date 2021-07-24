@@ -1,0 +1,24 @@
+#cloud-config
+ssh_authorized_keys:
+- ${automation_key}
+%{ for ssh_key in extra_ssh_keys }
+- ${ssh_key}
+%{ endfor }
+runcmd:
+- apt-get update
+- apt-get install -y iptables git telnet vim software-properties-common resolvconf linux-headers-$(uname -r) jq curl open-iscsi
+- echo "nameserver 1.1.1.1" > /etc/resolvconf/resolv.conf.d/tail
+- echo "RateLimitIntervalSec=0" >> /etc/systemd/journald.conf
+- echo "RateLimitBurst=0" >> /etc/systemd/journald.conf
+- systemctl restart systemd-journald.service
+- systemctl start resolvconf
+- /install_k3s.sh
+write_files:
+- path: /install_k3s.sh
+  permissions: "0700"
+  owner: root:root
+  content: |
+    #! /bin/bash
+    PUBLIC_IP=$(curl ifconfig.io)
+    export INSTALL_K3S_VERSION="${k3s_version}"
+    curl  -sfL https://get.k3s.io  | sh -s - --tls-san $PUBLIC_IP
