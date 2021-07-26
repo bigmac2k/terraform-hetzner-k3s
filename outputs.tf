@@ -1,9 +1,9 @@
-output "master_ipv4" {
-  value = module.masterpool.ipv4
+output "k3s_ipv4" {
+  value = module.k3s.ipv4
 }
-output "master_ipv6" {
-  value = module.masterpool.ipv6
+output "k3s_ipv6" {
+  value = module.k3s.ipv6
 }
 output "kubeconfig_base64" {
-  value = module.masterpool.kubeconfig_base64
+  value = module.k3s.kubeconfig_base64
 }

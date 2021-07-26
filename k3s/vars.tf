@@ -6,15 +6,15 @@ variable "clustername" {
   type        = string
   description = "name of the cluster"
 }
-variable "master_type" {
+variable "machine_type" {
   type        = string
   default     = "cx21-ceph"
-  description = "machine type to use for the masters"
+  description = "machine type to use for the k3s machine"
 }
 variable "extra_ssh_keys" {
   type        = list
   default     = []
-  description = "Extra ssh keys to inject into Rancher instances"
+  description = "Extra ssh keys to inject into k3s instance"
 }
 variable "k3s_version" {
   type        = string

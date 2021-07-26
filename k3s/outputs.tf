@@ -1,8 +1,8 @@
 output "ipv4" {
-  value = hcloud_server.master.ipv4_address
+  value = hcloud_server.k3s.ipv4_address
 }
 output "ipv6" {
-  value = hcloud_server.master.ipv6_address
+  value = hcloud_server.k3s.ipv6_address
 }
 output "kubeconfig" {
   value = data.external.get_kubeconfig.result.kubeconfig

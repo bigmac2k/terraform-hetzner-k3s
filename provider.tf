@@ -35,30 +35,30 @@ provider "hcloud" {
 
 provider "helm" {
   kubernetes {
-    host = module.masterpool.host
-    client_certificate = base64decode(module.masterpool.cert)
-    client_key = base64decode(module.masterpool.key)
-    cluster_ca_certificate = base64decode(module.masterpool.ca)
+    host = module.k3s.host
+    client_certificate = base64decode(module.k3s.cert)
+    client_key = base64decode(module.k3s.key)
+    cluster_ca_certificate = base64decode(module.k3s.ca)
   }
 }
 
 provider "kubernetes" {
-  host = module.masterpool.host
-  client_certificate = base64decode(module.masterpool.cert)
-  client_key = base64decode(module.masterpool.key)
-  cluster_ca_certificate = base64decode(module.masterpool.ca)
+  host = module.k3s.host
+  client_certificate = base64decode(module.k3s.cert)
+  client_key = base64decode(module.k3s.key)
+  cluster_ca_certificate = base64decode(module.k3s.ca)
 }
 
 provider "kubernetes-alpha" {
-  host = module.masterpool.host
-  client_certificate = base64decode(module.masterpool.cert)
-  client_key = base64decode(module.masterpool.key)
-  cluster_ca_certificate = base64decode(module.masterpool.ca)
+  host = module.k3s.host
+  client_certificate = base64decode(module.k3s.cert)
+  client_key = base64decode(module.k3s.key)
+  cluster_ca_certificate = base64decode(module.k3s.ca)
 }
 
 provider "kubectl" {
-  host = module.masterpool.host
-  client_certificate = base64decode(module.masterpool.cert)
-  client_key = base64decode(module.masterpool.key)
-  cluster_ca_certificate = base64decode(module.masterpool.ca)
+  host = module.k3s.host
+  client_certificate = base64decode(module.k3s.cert)
+  client_key = base64decode(module.k3s.key)
+  cluster_ca_certificate = base64decode(module.k3s.ca)
 }

@@ -1,11 +1,10 @@
-resource "hcloud_server" "master" {
-  name = "${var.clustername}-master"
+resource "hcloud_server" "k3s" {
+  name = "${var.clustername}-k3s"
   location = var.location
   image = "ubuntu-20.04"
-  server_type = var.master_type
+  server_type = var.machine_type
   labels = {
     cluster: var.clustername,
-    master: "true"
   }
   backups = true
   ssh_keys = var.ssh_keys
@@ -19,6 +18,6 @@ data "external" "get_kubeconfig" {
   program = ["bash", "${path.module}/get_kubeconfig.sh"]
 
   query = {
-    cluster_ip = hcloud_server.master.ipv4_address
+    cluster_ip = hcloud_server.k3s.ipv4_address
   }
 }
