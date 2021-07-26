@@ -20,6 +20,13 @@ write_files:
   owner: root:root
   content: |
     #! /bin/bash
-    PUBLIC_IP=$(curl ifconfig.io)
+    PUBLIC_IP="${public_ip_override}"
+    if [ -z "$PUBLIC_IP" ]; then
+      PUBLIC_IP=$(curl ifconfig.io)
+    else
+      echo -e "network:\n\tversion: 2\n\trenderer: networkd\n\tethernets:\n\t\teth0:\n\t\t\taddresses:\n\t\t\t- $PUBLIC_IP/32" | sed 's/\t/  /g' > /etc/netplan/60-floating-ip.yaml
+      netplan apply
+    fi
+    sleep 5
     export INSTALL_K3S_VERSION="${k3s_version}"
     curl  -sfL https://get.k3s.io  | sh -s - --tls-san $PUBLIC_IP

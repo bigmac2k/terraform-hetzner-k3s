@@ -4,6 +4,9 @@ output "ipv4" {
 output "ipv6" {
   value = hcloud_server.k3s.ipv6_address
 }
+output "server_id" {
+  value = hcloud_server.k3s.id
+}
 output "kubeconfig" {
   value = data.external.get_kubeconfig.result.kubeconfig
 }

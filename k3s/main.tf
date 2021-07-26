@@ -10,7 +10,8 @@ resource "hcloud_server" "k3s" {
   ssh_keys = var.ssh_keys
   user_data = templatefile("${path.module}/server_userdata.tmpl", {
     extra_ssh_keys = var.extra_ssh_keys,
-    k3s_version = var.k3s_version
+    k3s_version = var.k3s_version,
+    public_ip_override = var.public_ip_override
   })
 }
 

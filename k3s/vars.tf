@@ -26,3 +26,7 @@ variable "location" {
   default     = "nbg1"
   description = "hetzner location"
 }
+variable "public_ip_override" {
+  type        = string
+  default     = ""
+}
